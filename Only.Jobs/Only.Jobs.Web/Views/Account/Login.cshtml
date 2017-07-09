@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/Content/css/bootstrap.min.css?v=1.0" rel="stylesheet">
+    <link href="/Content/css/font-awesome.min.css?v=1.0" rel="stylesheet">
+
+    <link href="/Content/css/animate.min.css" rel="stylesheet">
+    <link href="/Content/css/style.min.css?v=1.0" rel="stylesheet">
+
+    <script>if (window.top !== window.self) { window.top.location = window.location; }</script>
+</head>
+<body class="gray-bg" id="main_container">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown" ng-controller="LoginController">
+        <div>
+            <div>
+                <h1 class="logo-name " style="font-size: 80px">Only.Jobs</h1>
+            </div>
+            <h3>欢迎使用 Only.Jobs 管理中心</h3>
+
+            <form class="m-t" role="form">
+                <div class="form-group">
+                    <input type="text" id="txtUserAccount" class="form-control" placeholder="账号" value="admin" ng-model="model.UserAccount">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="txtPassword" class="form-control" placeholder="密码" value="admin" ng-model="model.Password" ng-keyup="LoginEnter($event)">
+                </div>
+                <div class="form-group" style="height: 20px;">
+
+                    <span class="error" ng-show="message != ''">{{message}}</span>
+
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary block full-width m-b" ng-click="Login()">登 录</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- 全局js -->
+    <script src="/Scripts/jquery/jquery-2.1.1.min.js?v=1.0.0" type="text/javascript"></script>
+    <script src="/Scripts/bootstrap/bootstrap.min.js?v=1.0.0" type="text/javascript"></script>
+    <script src="/Scripts/angularjs/angular.min.js?v=1.0.0" type="text/javascript"></script>
+
+    <!-- plugins -->
+    <script src="/Scripts/plugins/showLoading/jquery.showLoading.min.js?v=1.0.1" type="text/javascript"></script>
+    <script src="/Scripts/m-1.0.0.js?v=1.0.0" type="text/javascript"></script>
+    <script src="/Scripts/cc.js?v=1.0.0" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var ReturnUrl = "";
+    </script>
+    <script src="/Scripts/controllers/system/login.controller.js?v=" type="text/javascript"></script>
+
+</body>
+</html>

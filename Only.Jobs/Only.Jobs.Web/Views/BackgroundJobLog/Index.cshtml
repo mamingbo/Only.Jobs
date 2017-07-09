@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+@section CSS{
+
+}
+
+<div class="wrapper animated fadeInUp" ng-controller="BackgroundJobLogListController">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Job日志</h5>
+                </div>
+
+                <div class="ibox-title">
+                    <div class="ibox-tools" style="display: inline-block; float: left">
+                        <a href="javascript:void(0)" class="btn btn-primary btn-xs btn-delete">删除</a>
+                    </div>
+                </div>
+
+                <div class="ibox-content">
+                    <form role="form" class="form-inline query-container" id="form_search">
+
+                        <div class="form-group  m-l">
+                            <label for="ClassTaskId" class="sr  m-r-xs">Job名称</label>
+                            <input type="text" placeholder="" id="JobName" name="JobName" class="form-control" ng-model="model.JobName">
+                        </div>
+
+                        <button class="btn btn-primary btn-search" type="button">搜索</button>
+                    </form>
+                    <div class="jqGrid_wrapper">
+                        <table id="data_grid"></table>
+                        <div id="grid_pager_bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section JS{
+    <script src="/Scripts/controllers/backgroundjoblog.controller.js"></script>
+    <script type="text/javascript">
+        function ShowEditFrame(BackgroundJobLogId) {
+            oUtils.showIframe({
+                areaWidth: '700px',
+                areaHeight: '530px',
+                Url: '/BackgroundJobLog/Info?BackgroundJobLogId=' + BackgroundJobLogId + '&r=' + Math.random(),
+                title: 'Job日志详情'
+            });
+        }
+
+        $(function () {
+            $('.btn-delete').click(function () {
+                var idList = $('#data_grid').jqGrid('getGridParam', 'selarrrow');
+                if (idList != null && idList != '' && idList.length > 0) {
+                    if (confirm('确定要删除所选择的行吗？')) {
+                        $.post('/BackgroundJobLog/Delete', { idList: idList.join(',') }, function (result) {
+                            if (result.success) {
+                                alert('删除成功');
+                                $('#data_grid').trigger("reloadGrid");
+                            } else {
+                                alert(result.message || '操作失败');
+                            }
+                        }, 'json');
+                    }
+                } else {
+                    alert('请勾选要操作的行 ');
+                }
+            })
+        })
+    </script>
+}
+
+

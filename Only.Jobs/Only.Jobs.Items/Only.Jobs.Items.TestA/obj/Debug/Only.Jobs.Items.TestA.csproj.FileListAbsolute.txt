@@ -1,0 +1,9 @@
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs.Items\Only.Jobs\bin\Debug\Only.Jobs.Items.TestA.dll.config
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs.Items\Only.Jobs\bin\Debug\Only.Jobs.Items.TestA.dll
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs.Items\Only.Jobs\bin\Debug\Only.Jobs.Items.TestA.pdb
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs.Items\Only.Jobs.Items.TestA\obj\Debug\Only.Jobs.Items.TestA.dll
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs.Items\Only.Jobs.Items.TestA\obj\Debug\Only.Jobs.Items.TestA.pdb
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs\bin\Debug\Only.Jobs.Items.TestA.dll.config
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs\bin\Debug\Only.Jobs.Items.TestA.dll
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs\bin\Debug\Only.Jobs.Items.TestA.pdb
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs.Items\Only.Jobs.Items.TestA\obj\Debug\Only.Jobs.Items.TestA.csprojResolveAssemblyReference.cache

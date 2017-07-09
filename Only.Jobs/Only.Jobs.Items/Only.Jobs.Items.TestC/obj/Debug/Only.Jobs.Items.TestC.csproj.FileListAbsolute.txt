@@ -1,0 +1,6 @@
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs\bin\Debug\Only.Jobs.Items.TestC.dll.config
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs\bin\Debug\Only.Jobs.Items.TestC.dll
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs\bin\Debug\Only.Jobs.Items.TestC.pdb
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs.Items\Only.Jobs.Items.TestC\obj\Debug\Only.Jobs.Items.TestC.csprojResolveAssemblyReference.cache
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs.Items\Only.Jobs.Items.TestC\obj\Debug\Only.Jobs.Items.TestC.dll
+G:\jinchiSVN\Project\Only\Only.Jobs\Only.Jobs.Items\Only.Jobs.Items.TestC\obj\Debug\Only.Jobs.Items.TestC.pdb
