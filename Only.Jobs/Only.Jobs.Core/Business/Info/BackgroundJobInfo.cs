@@ -6,7 +6,6 @@ namespace Only.Jobs.Core.Business.Info
     /// <summary>
     /// Job信息
     /// </summary>
-    [SugarTable("BackgroundJob")]
     public class BackgroundJobInfo
     {
         /// <summary>

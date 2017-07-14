@@ -5,7 +5,7 @@ namespace Only.Jobs.Core.Business.Manager
 {
     public class BaseManager
     {
-        private static string ConnectionString
+        private string ConnectionString
         {
             get
             {
@@ -13,7 +13,7 @@ namespace Only.Jobs.Core.Business.Manager
             }
         }
 
-        private static string DbType
+        private string DbType
         {
             get
             {
@@ -21,7 +21,7 @@ namespace Only.Jobs.Core.Business.Manager
             }
         }
 
-        public static SqlSugarClient db
+        public SqlSugarClient db
         {
             get
             {
@@ -46,8 +46,26 @@ namespace Only.Jobs.Core.Business.Manager
                 //    Console.WriteLine(sql + "\r\n" + db.RewritableMethods.SerializeObject(pars));
                 //    Console.WriteLine();
                 //};
+
+                if (_db != null)
+                {
+                    string BackgroundJobMappingDbTable = GetDbTableNameSetting("BackgroundJobMappingDbTable");
+                    BackgroundJobMappingDbTable = string.IsNullOrWhiteSpace(BackgroundJobMappingDbTable) ? "BackgroundJob" : BackgroundJobMappingDbTable;
+                    _db.MappingTables.Add("BackgroundJobInfo", BackgroundJobMappingDbTable);
+
+                    string BackgroundJobLogMappingDbTable = GetDbTableNameSetting("BackgroundJobLogMappingDbTable");
+                    BackgroundJobLogMappingDbTable = string.IsNullOrWhiteSpace(BackgroundJobLogMappingDbTable) ? "BackgroundJobLog" : BackgroundJobLogMappingDbTable;
+                    _db.MappingTables.Add("BackgroundJobLogInfo", BackgroundJobLogMappingDbTable);
+
+                }
                 return _db;
             }
         }
+
+        private string GetDbTableNameSetting(string dbName)
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get(dbName);
+        }
+
     }
 }

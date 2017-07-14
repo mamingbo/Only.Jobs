@@ -28,8 +28,10 @@ namespace Only.Jobs.Core.Business.Manager
         /// <returns></returns>
         public bool UpdateBackgroundJob(BackgroundJobInfo backgroundJobInfo)
         {
+            System.Guid BackgroundJobId = backgroundJobInfo.BackgroundJobId;
+
             backgroundJobInfo.LastUpdatedDateTime = DateTime.Now;
-            db.Updateable(backgroundJobInfo).IgnoreColumns(it => new { it.LastRunTime, it.NextRunTime, it.RunCount, it.CreatedByUserId, it.CreatedByUserName, it.CreatedDateTime, it.IsDelete }).ExecuteCommand();
+            db.Updateable(backgroundJobInfo).IgnoreColumns(it => new { it.LastRunTime, it.NextRunTime, it.RunCount, it.CreatedByUserId, it.CreatedByUserName, it.CreatedDateTime, it.IsDelete }).Where(it => it.BackgroundJobId == BackgroundJobId).ExecuteCommand();
             return true;
         }
 
@@ -45,7 +47,7 @@ namespace Only.Jobs.Core.Business.Manager
             backgroundJobInfo.BackgroundJobId = BackgroundJobId;
             backgroundJobInfo.IsDelete = 1;
             backgroundJobInfo.LastUpdatedDateTime = DateTime.Now;
-            db.Updateable(backgroundJobInfo).UpdateColumns(it => new { it.IsDelete, it.LastUpdatedDateTime }).ExecuteCommand();
+            db.Updateable(backgroundJobInfo).UpdateColumns(it => new { it.IsDelete, it.LastUpdatedDateTime }).Where(it => it.BackgroundJobId == BackgroundJobId).ExecuteCommand();
             return true;
         }
 
@@ -56,7 +58,7 @@ namespace Only.Jobs.Core.Business.Manager
         /// <returns></returns>
         public BackgroundJobInfo GetBackgroundJobInfo(System.Guid BackgroundJobId)
         {
-            return db.Queryable<BackgroundJobInfo>().InSingle(BackgroundJobId);
+            return db.Queryable<BackgroundJobInfo>().Where(it => it.BackgroundJobId == BackgroundJobId).First();
         }
 
         /// <summary>
@@ -114,7 +116,7 @@ namespace Only.Jobs.Core.Business.Manager
             BackgroundJobInfo backgroundJobInfo = new BackgroundJobInfo();
             backgroundJobInfo.BackgroundJobId = BackgroundJobId;
             backgroundJobInfo.State = State;
-            db.Updateable(backgroundJobInfo).UpdateColumns(it => new { it.State }).ExecuteCommand();
+            db.Updateable(backgroundJobInfo).UpdateColumns(it => new { it.State }).Where(it => it.BackgroundJobId == BackgroundJobId).ExecuteCommand();
             return true;
         }
 
@@ -144,7 +146,7 @@ namespace Only.Jobs.Core.Business.Manager
         /// <returns></returns>
         public BackgroundJobLogInfo GetBackgroundJobLogInfo(System.Guid BackgroundJobLogId)
         {
-            return db.Queryable<BackgroundJobLogInfo>().InSingle(BackgroundJobLogId);
+            return db.Queryable<BackgroundJobLogInfo>().Where(it => it.BackgroundJobLogId == BackgroundJobLogId).First();
         }
 
         /// <summary>
