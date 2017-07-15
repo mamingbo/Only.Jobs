@@ -29,17 +29,24 @@ namespace Only.Jobs.Core
             if (context.MergedJobDataMap != null)
             {
                 JobName = context.MergedJobDataMap.GetString("JobName");
-                if (JobName.IndexOf("TestA") > -1)
+                System.Text.StringBuilder log = new System.Text.StringBuilder();
+                int i = 0;
+                foreach (var item in context.MergedJobDataMap)
                 {
-                    foreach (var item in context.MergedJobDataMap)
+                    string key = item.Key;
+                    if (key.StartsWith("extend_"))
                     {
-                        string key = item.Key;
-                        if (key.StartsWith("extend_"))
+                        if (i > 0)
                         {
-                            LogContent = string.Concat(LogContent, "[", item.Value, "]");
-                            break;
+                            log.Append(",");
                         }
+                        log.AppendFormat("{0}:{1}", item.Key, item.Value);
+                        i++;
                     }
+                }
+                if (i > 0)
+                {
+                    LogContent = string.Concat("[", log.ToString(), "]");
                 }
             }
             if (jobException != null)

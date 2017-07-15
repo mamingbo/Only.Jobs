@@ -18,7 +18,8 @@ namespace Only.Jobs.Items.TestA
             _logger.InfoFormat("JobTestA Execute begin Ver." + Ver.ToString());
             try
             {
-                context.MergedJobDataMap.Put("extend_log", "JobTestA Executing" + DateTime.Now);
+                context.MergedJobDataMap.Put("extend_logA", "JobTestA Executing" + DateTime.Now);
+                context.MergedJobDataMap.Put("extend_run_result", "success");
 
                 _logger.InfoFormat("JobTestA Executing ...");
                 Console.WriteLine("---------------------");
