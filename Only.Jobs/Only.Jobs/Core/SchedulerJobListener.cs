@@ -25,16 +25,27 @@ namespace Only.Jobs.Core
 
             double TotalSeconds = context.JobRunTime.TotalSeconds;
             string JobName = string.Empty;
+            string LogContent = string.Empty;
             if (context.MergedJobDataMap != null)
             {
                 JobName = context.MergedJobDataMap.GetString("JobName");
+                if (JobName.IndexOf("TestA") > -1)
+                {
+                    foreach (var item in context.MergedJobDataMap)
+                    {
+                        string key = item.Key;
+                        if (key.StartsWith("extend_"))
+                        {
+                            LogContent = string.Concat(LogContent, "[", item.Value, "]");
+                            break;
+                        }
+                    }
+                }
             }
-            string LogContent = string.Empty;
             if (jobException != null)
             {
-                LogContent = jobException.ToString();
+                LogContent = LogContent + " EX:" + jobException.ToString();
             }
-
             new BackgroundJobService().UpdateBackgroundJobStatus(BackgroundJobId, JobName, FireTimeUtc, NextFireTimeUtc, TotalSeconds, LogContent);
         }
 

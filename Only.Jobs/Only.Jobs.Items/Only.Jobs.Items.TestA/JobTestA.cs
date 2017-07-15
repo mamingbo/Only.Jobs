@@ -1,4 +1,6 @@
 ﻿using log4net;
+using Only.Jobs.Core.Business.Info;
+using Only.Jobs.Core.Business.Manager;
 using Quartz;
 using System;
 
@@ -16,6 +18,8 @@ namespace Only.Jobs.Items.TestA
             _logger.InfoFormat("JobTestA Execute begin Ver." + Ver.ToString());
             try
             {
+                context.MergedJobDataMap.Put("extend_log", "JobTestA Executing" + DateTime.Now);
+
                 _logger.InfoFormat("JobTestA Executing ...");
                 Console.WriteLine("---------------------");
             }
