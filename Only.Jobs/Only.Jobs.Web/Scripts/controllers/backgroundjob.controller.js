@@ -44,7 +44,6 @@ function BackgroundJobListController($scope, $http, $window) {
                         { name: "JobType", width: 80, index: "JobType", sortable: false },
                         { name: "AssemblyName", width: 140, index: "AssemblyName", sortable: false },
                         { name: "ClassName", width: 130, index: "ClassName", sortable: false },
-
                         { name: "LastRunTime", width: 135, index: "LastRunTime", sortable: false },
                         { name: "NextRunTime", width: 135, index: "NextRunTime", sortable: false },
                         { name: "RunCount", width: 80, index: "RunCount", sortable: false },
@@ -61,38 +60,34 @@ function BackgroundJobListController($scope, $http, $window) {
 
     $scope.formatModel = function (cellValue, options, rowObject) {
         var btns = [];
-        btns.push('<a href="javascript:void(0);" onclick="ShowEditFrame(\'' + cellValue + '\')" class="btn btn-primary btn-xs" >编辑</a>');
+        btns.push('<a href="javascript:void(0);" onclick="ShowEditFrame(\'' + cellValue + '\')" class="btn btn-info  btn-xs" >编辑</a>');
 
         //状态 0-停止  1-运行   3-正在启动中...   5-停止中...
         var State = rowObject.State;
-        var StateText = "未知";
         if (State == 0) {
-            StateText = "未启用";
-            btns.push('<a href="javascript:void(0);" onclick="SetState(\'' + cellValue + '\',3)" class="btn btn-primary btn-xs" >启用</a>');
+            btns.push('<a href="javascript:void(0);" onclick="SetState(\'' + cellValue + '\',3)" class="btn btn-success  btn-xs" >启用</a>');
         } else if (State == 1) {
-            StateText = "运行中";
-            btns.push('<a href="javascript:void(0);" onclick="SetState(\'' + cellValue + '\',5)" class="btn btn-primary btn-xs" >停止</a>');
+            btns.push('<a href="javascript:void(0);" onclick="SetState(\'' + cellValue + '\',5)" class="btn btn-warning  btn-xs" >停止</a>');
         }
         return btns.join('&nbsp;&nbsp;&nbsp;&nbsp;');
     };
 
     $scope.formatState = function (cellValue, options, rowObject) {
-        var btns = [];
         //状态 0-停止  1-运行   3-正在启动中...   5-停止中...
-        var State = rowObject.State;
-        var StateText = "未知";
-        if (State == 0) {
-            StateText = "停止";
-        } else if (State == 1) {
-            StateText = "运行";
-        } else if (State == 3) {
-            StateText = "正在启动中...";
-        } else if (State == 5) {
-            StateText = "停止中...";
+        var state = rowObject.State;
+        if (state == 0) {
+            return '<span class="label label-warning">停止</span>';
+        } else if (state == 1) {
+            return '<span class="label label-primary">运行</span>';
+        } else if (state == 3) {
+            return '<span class="label label-info">启动中...</span>';
+        } else if (state == 5) {
+            return '<span class="label label-info">停止中...</span>';
+        } else {
+            return '<span class="label label-danger">未知</span>';
         }
-        btns.push('<span class="btn btn-primary btn-xs" >' + StateText + '</span>');
-        return btns.join('&nbsp;&nbsp;&nbsp;&nbsp;');
     };
+
 
     $scope.model = {
         Name: ''

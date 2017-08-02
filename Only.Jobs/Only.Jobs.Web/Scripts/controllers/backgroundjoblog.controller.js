@@ -42,7 +42,7 @@ function BackgroundJobLogListController($scope, $http, $window) {
 
     $scope.formatModel = function (cellValue, options, rowObject) {
         var btns = [];
-        btns.push('<a href="javascript:void(0);" onclick="ShowEditFrame(\'' + cellValue + '\')" class="btn btn-primary btn-xs" >详情</a>');
+        btns.push('<a href="javascript:void(0);" onclick="ShowEditFrame(\'' + cellValue + '\')" class="btn btn-info btn-xs" >详情</a>');
         return btns.join('&nbsp;&nbsp;&nbsp;&nbsp;');
     };
 
